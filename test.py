@@ -1,10 +1,10 @@
 from alayout import *
 
-with LinearLayout(layout_width='fill_parent', layout_height='fill_parent', orientation='vertical'):
-	with TextView(id='@+id/text', layout_width='wrap_content', layout_height='wrap_content') as tv:
+with LinearLayout(width=FILL, height=FILL, orientation=VERTICAL):
+	with TextView(id='text', width=WRAP, height=WRAP) as tv:
 		tv['text'] = 'Hello, I am a TextView'
 	Button(
-			id='@+id/button', layout_width='wrap_content', layout_height='wrap_content',
+			id='button', width=WRAP, height=WRAP,
 			text='Hello, I am a Button'
 		)
 

@@ -1,5 +1,15 @@
 import cgi
 
+FILL='parent_fill'
+WRAP='content_wrap'
+VERTICAL='vertical'
+
+attrs = dict(
+		width=lambda k, v: ('layout_width', v), 
+		height=lambda k, v: ('layout_height', v), 
+		id=lambda k, v: ('id', '@+id/' + v), 
+	)
+
 class ALayout(object):
 	nestStack = []
 	
@@ -42,6 +52,8 @@ class ALayout(object):
 	def __str__(self):
 		tag = '<%s' % self.tagname
 		for k, v in self.attrs.items():
+			if k in attrs:
+				k, v = attrs[k](k, v)
 			ns = '' if ':' in k else 'android:'
 			tag += ' %s%s="%s"' % (ns, k, cgi.escape(v))
 		if len(self.body):
